@@ -11,27 +11,47 @@
 *{margin:0;padding:0;box-sizing:border-box}
 
 body{
-  font-family:Arial,sans-serif;
-  background:linear-gradient(135deg,#050505,#07140f);
+  font-family:'Arial',sans-serif;
+  background:
+    radial-gradient(circle at top left,rgba(0,255,136,.22),transparent 30%),
+    radial-gradient(circle at bottom right,rgba(0,255,136,.13),transparent 35%),
+    linear-gradient(135deg,#030303,#07130d);
   color:white;
   min-height:100vh;
-  padding:25px;
+  padding:28px;
 }
 
 .container{
-  max-width:1000px;
+  max-width:1100px;
   margin:auto;
 }
 
-h1{
-  color:#00ff88;
-  font-size:52px;
-  margin-bottom:8px;
+.hero{
+  text-align:center;
+  margin-bottom:35px;
 }
 
-p{
-  color:#ccc;
-  margin-bottom:25px;
+.badge{
+  display:inline-block;
+  padding:8px 16px;
+  border:1px solid rgba(0,255,136,.45);
+  border-radius:999px;
+  color:#00ff88;
+  font-size:13px;
+  letter-spacing:2px;
+  margin-bottom:18px;
+}
+
+h1{
+  font-size:58px;
+  color:#00ff88;
+  margin-bottom:10px;
+}
+
+.subtitle{
+  color:#cfcfcf;
+  font-size:17px;
+  line-height:1.6;
 }
 
 .grid{
@@ -41,71 +61,113 @@ p{
 }
 
 .panel{
-  background:#101010;
-  border:1px solid #00ff88;
-  border-radius:20px;
-  padding:25px;
+  background:rgba(255,255,255,.045);
+  border:1px solid rgba(0,255,136,.45);
+  border-radius:24px;
+  padding:26px;
+  box-shadow:0 0 35px rgba(0,255,136,.08);
+}
+
+.panel-title{
+  color:#00ff88;
+  font-size:22px;
+  margin-bottom:18px;
 }
 
 label{
   display:block;
   margin-top:15px;
   font-weight:bold;
+  color:#e8e8e8;
 }
 
-input, select{
+input{
   width:100%;
-  margin-top:6px;
-  padding:13px;
-  border-radius:10px;
-  border:none;
+  margin-top:7px;
+  padding:14px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.12);
   outline:none;
+  background:#101010;
+  color:white;
+  font-size:15px;
+}
+
+input[type="color"]{
+  height:50px;
+  padding:6px;
+  cursor:pointer;
 }
 
 button{
   width:100%;
-  margin-top:20px;
+  margin-top:16px;
   padding:15px;
   border:none;
-  border-radius:12px;
+  border-radius:14px;
   background:#00ff88;
   color:#000;
-  font-weight:bold;
+  font-weight:900;
   cursor:pointer;
+  font-size:15px;
+}
+
+.secondary{
+  background:transparent;
+  color:#00ff88;
+  border:1px solid rgba(0,255,136,.55);
+}
+
+.preview-wrap{
+  display:flex;
+  justify-content:center;
 }
 
 .preview{
+  width:100%;
+  max-width:390px;
   background:white;
   color:#111;
-  border-radius:22px;
-  padding:28px;
+  border-radius:26px;
+  padding:32px 26px;
   text-align:center;
+  box-shadow:0 20px 50px rgba(0,0,0,.35);
 }
 
 .preview h2{
-  font-size:36px;
-  margin-bottom:5px;
+  font-size:38px;
+  margin-bottom:6px;
 }
 
 .preview p{
   color:#333;
   margin-bottom:20px;
+  font-size:15px;
 }
 
 #qrcode{
   display:flex;
   justify-content:center;
-  margin:20px 0;
+  margin:22px 0;
 }
 
 .footer-text{
   font-weight:bold;
-  margin-top:15px;
+  margin-top:18px;
+  font-size:15px;
 }
 
-@media(max-width:800px){
+.made{
+  text-align:center;
+  margin-top:28px;
+  color:#777;
+  letter-spacing:2px;
+  font-size:13px;
+}
+
+@media(max-width:850px){
   .grid{grid-template-columns:1fr}
-  h1{font-size:40px}
+  h1{font-size:42px}
 }
 </style>
 </head>
@@ -113,46 +175,62 @@ button{
 <body>
 
 <div class="container">
-  <h1>Nexora QR Studio</h1>
-  <p>Generá QR personalizados para cartas, negocios, eventos o redes sociales.</p>
+
+  <div class="hero">
+    <div class="badge">NEXORA TOOL</div>
+    <h1>Nexora QR Studio</h1>
+    <p class="subtitle">
+      Generá códigos QR profesionales para negocios, cartas digitales,
+      eventos, redes sociales y sitios web.
+    </p>
+  </div>
 
   <div class="grid">
 
     <div class="panel">
+      <div class="panel-title">Configuración</div>
+
       <label>Nombre del negocio</label>
-      <input id="businessName" value="KUBO BAR">
+      <input id="businessName" value="Mi Negocio">
 
       <label>Texto principal</label>
-      <input id="mainText" value="Escaneá y mirá nuestra carta">
+      <input id="mainText" value="Escaneá para más información">
 
       <label>Link del QR</label>
-      <input id="qrLink" value="https://kubo-cartas.vercel.app/">
+      <input id="qrLink" value="https://ejemplo.com">
 
       <label>Texto inferior</label>
-      <input id="footerText" value="Comidas • Bebidas • Tragos">
+      <input id="footerText" value="Sitio web • Redes • Contacto">
 
       <label>Color principal</label>
-      <input id="mainColor" type="color" value="#ff2020">
+      <input id="mainColor" type="color" value="#00ff88">
 
-      <button onclick="generateQR()">Generar QR</button>
-      <button onclick="downloadQR()">Descargar QR</button>
-      <button onclick="downloadPoster()">Descargar cartel</button>
+      <button onclick="generateQR()">⚡ Generar QR</button>
+      <button class="secondary" onclick="downloadQR()">⬇ Descargar QR</button>
+      <button class="secondary" onclick="downloadPoster()">🖨 Imprimir cartel</button>
     </div>
 
     <div class="panel">
-      <div class="preview" id="poster">
-        <h2 id="previewBusiness">KUBO BAR</h2>
-        <p id="previewText">Escaneá y mirá nuestra carta</p>
+      <div class="panel-title">Vista previa</div>
 
-        <div id="qrcode"></div>
+      <div class="preview-wrap">
+        <div class="preview" id="poster">
+          <h2 id="previewBusiness">Mi Negocio</h2>
+          <p id="previewText">Escaneá para más información</p>
 
-        <div class="footer-text" id="previewFooter">
-          Comidas • Bebidas • Tragos
+          <div id="qrcode"></div>
+
+          <div class="footer-text" id="previewFooter">
+            Sitio web • Redes • Contacto
+          </div>
         </div>
       </div>
     </div>
 
   </div>
+
+  <div class="made">🚀 POWERED BY NEXORA</div>
+
 </div>
 
 <script>
